@@ -1,4 +1,4 @@
-function [ RGBArray ] = toArrayImage( img )
+function [ RGBArray ] = image2RGBArray( img )
 %Converts m x n matrix of [0:1] values to 3-D array of true colors
 %Input and output is in grayscale;
 
