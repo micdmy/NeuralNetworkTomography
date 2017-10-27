@@ -7,3 +7,6 @@
 %PRESENTATION FUNCTIONS:
 %displayImage() - displays img
 %   image2RGBArray() - converts img to displayable RGBArray
+
+%DATA ACQUIRING FUNCTIONS:
+%imageFromGrayscaleFile() conferts for example *.tif to img
