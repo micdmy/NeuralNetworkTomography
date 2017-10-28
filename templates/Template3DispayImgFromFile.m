@@ -1,10 +1,11 @@
 clear all;
 clc;
-img = imageFromGrayscaleFile('rectangles1_x10.tif');
+filename = 'rectangles1_x10.tif'
+img = imageFromGrayscaleFile(filename);
 
 figure(1);
 ax = gca;
-displayImage(img, ax);
+displayImage(img, ax, ['Picture: ',  filename]);
 hold on;
 
 
