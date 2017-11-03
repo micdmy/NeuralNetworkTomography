@@ -16,12 +16,8 @@ figure(1);
 daspect([1,1,1]);
 axis([0,100, 0,100]);
 hold on;
-plot(x(1,:),y(1,:));
 grid on;
-hold on;
-plot(x(2,:),y(2,:));
-hold on;
-plot(x(3,:),y(3,:));
+plotMore(x,y);
 
 figure(2);
 ax = gca;
