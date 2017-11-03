@@ -32,5 +32,5 @@ fi = fi + rotationAngles; % rotate ellipses by alfa
 xshift = xpos * ones(1,points);
 yshift = ypos * ones(1,points);
 x = x + xshift;% shift ellipse horizontally to center specified in xpos
-y = y + xshift;% shift ellipse vertically to center specified in ypos
+y = y + yshift;% shift ellipse vertically to center specified in ypos
 end
