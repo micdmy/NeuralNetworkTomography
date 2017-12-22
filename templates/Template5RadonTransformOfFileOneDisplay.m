@@ -1,4 +1,5 @@
 clear all;
+close all;
 clc;
 img = imageFromGrayscaleFile( 'rectangles2_x100.pgm' );
 

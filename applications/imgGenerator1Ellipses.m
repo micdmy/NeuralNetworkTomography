@@ -1,16 +1,18 @@
 clear all;
 clc;
 
-numberOfImages = 5;
+namePattern = 'Ellipse1x6y6n200';
+numberOfImages = 200;
+
 
 %images data:
-imgSize = 100;
+imgSize = 6;
 ellipse2ImgRatioMax = 1/2;
 ellipse2ImgRatioMin = 1/6;
 nrOfEllipses = 1;
 
 %radon data:
-projectionNum = 17;
+projectionNum = 8;
 %angleStep = floor(180 / projectionNum);
 angles = linspace(0, 180, projectionNum+1);
 angles = angles(1: end-1);
@@ -31,7 +33,6 @@ for k = 1 : numberOfImages;
     projections(:,:,k) = radon(imgs(:,:,k), angles);
 end
 
-namePattern = 'img1Ellipses';
 images2GrayscaleFiles(imgs, [namePattern, 'I']);
 images2GrayscaleFiles(projections, [namePattern, 'R']);
 save([namePattern, '.mat'], 'imgs', 'projections', 'tau', 'angles');

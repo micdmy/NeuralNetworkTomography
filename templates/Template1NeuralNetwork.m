@@ -1,4 +1,5 @@
 clc;
+close all;
 clear all;
 input = 0 : 0.002 : 1
 output = someSystem(input);
