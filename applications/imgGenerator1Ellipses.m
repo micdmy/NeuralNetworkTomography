@@ -1,15 +1,16 @@
 clear all;
 clc;
 
-namePattern = 'Ellipse1x6y6n200';
+namePattern = 'Ellipse2x10y10n200';
 numberOfImages = 200;
+generatePgmFiles = false;
 
 
 %images data:
-imgSize = 6;
+imgSize = 10;
 ellipse2ImgRatioMax = 1/2;
-ellipse2ImgRatioMin = 1/6;
-nrOfEllipses = 1;
+ellipse2ImgRatioMin = 1/4;
+nrOfEllipses = 2;
 
 %radon data:
 projectionNum = 8;
@@ -33,6 +34,8 @@ for k = 1 : numberOfImages;
     projections(:,:,k) = radon(imgs(:,:,k), angles);
 end
 
-images2GrayscaleFiles(imgs, [namePattern, 'I']);
-images2GrayscaleFiles(projections, [namePattern, 'R']);
+if generatePgmFiles
+    images2GrayscaleFiles(imgs, [namePattern, 'I']);
+    images2GrayscaleFiles(projections, [namePattern, 'R']);
+end
 save([namePattern, '.mat'], 'imgs', 'projections', 'tau', 'angles');

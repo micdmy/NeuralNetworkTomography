@@ -2,7 +2,7 @@ clc;
 clear all;
 close all;
 
-name = 'img1Ellipses';
+name = 'Ellipse2x10y10n200';
 file = load([name '.mat']);
 imgs = file.imgs;
 rads = file.projections;
