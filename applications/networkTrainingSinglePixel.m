@@ -1,7 +1,7 @@
 clc;
 close all;
 clear all;
-name = 'Ellipse2x10y10n200';
+name = 'Ellipse2x32y32n1000';
 file = load([name '.mat']);
 imgs = file.imgs;
 rads = file.projections;
@@ -28,15 +28,17 @@ view(net);
 
 net = train(net, inputCA, targetCA);
 
-orginals = imgs(:,:,numToTrain+1:end);
 testInputs = rads(:,:,numToTrain+1:end);
-testInputsCA = tonndata(testInputs, columnSamples, false);
-for ny = 1 : size(imgs,1)
-    for nx = 1 : size(imgs,2)
-        pixelCA = net(testInputsCA(ny * nx));
-        toMatrix = true;
-        columnSample = true;
-        pixel = fromnndata(pixelCA,toMatrix, columnSample, false);
-    end
+output = zeros(size(imgs,1), size(imgs,2), numToCheck);
+for k = 1 : numToCheck
+    projForPixelsInImg = radon2PixelProjections([size(imgs,1), size(imgs,2)], testInputs(:,:,k), angles);
+    projForPixelsInImgCA = tonndata(projForPixelsInImg, columnSamples, false);
+    rowImgCA  = net(projForPixelsInImgCA);
+    output(:,:,k)  = reshape(fromnndata(rowImgCA ,true, true, false), [size(imgs,1), size(imgs,2)]);
 end
+output = normalizeImages(output);
+orginals = imgs(:,:,numToTrain+1:end);
 
+save([name 'PixResults.mat'], 'net', 'orginals', 'output', 'numAngles', 'numToTrain', 'numToCheck');
+SuccessSavedTo =  [name 'Results.mat'] % should echo
+displayResults([name 'Pix']);

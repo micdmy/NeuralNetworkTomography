@@ -1,13 +1,13 @@
 clear all;
 clc;
 
-namePattern = 'Ellipse2x10y10n200';
-numberOfImages = 200;
+namePattern = 'Ellipse2x32y32n1000';
+numberOfImages = 1000;
 generatePgmFiles = false;
 
 
 %images data:
-imgSize = 10;
+imgSize = 32;
 ellipse2ImgRatioMax = 1/2;
 ellipse2ImgRatioMin = 1/4;
 nrOfEllipses = 2;
