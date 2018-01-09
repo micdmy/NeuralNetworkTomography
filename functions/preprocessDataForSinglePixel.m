@@ -15,4 +15,5 @@ for k = 1 : numImgs %for every image and its radon transform:
         pixels(n) = imgs(pixCords(m,1), pixCords(m,2), k); % put pixel value to pixels
         n = n + 1;
     end
+    k % print k for user to see progress
 end

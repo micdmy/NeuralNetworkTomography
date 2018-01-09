@@ -1,7 +1,7 @@
 clc;
 close all;
 clear all;
-name = 'Ellipse2x32y32n1000';
+name = 'Ellipse1x32y32n600'; % nazwa pliku z obrazami i ich transformatami
 file = load([name '.mat']);
 imgs = file.imgs;
 rads = file.projections;
@@ -10,19 +10,20 @@ angles = file.angles;
 clear file;
 
 number = size(imgs, 3);
-trainFraction = 9/10;
+trainFraction = 550/600; %okresla ile przykladow uzyjemy do uczenia
 numToTrain = floor(number * trainFraction);
 numToCheck = number - numToTrain;
 
-numPixels = 50;
+numPixels = 700; % okresla ile pikseli z kazdego obrazu uzyjemy do uczenia
 
 [shRadsSums, pixels] = preprocessDataForSinglePixel(imgs(:,:,1:numToTrain), rads(:,:,1:numToTrain), numPixels, angles);
 columnSamples = true;
 inputCA = tonndata(shRadsSums, columnSamples, false);
 targetCA = tonndata(pixels, columnSamples, false);
 
-hiddenLayersSizes = [8,4];
+hiddenLayersSizes = [8,6,4]; %okresla liczbe neuronow w kolejnych warstwach ukrytych
 net = feedforwardnet(hiddenLayersSizes, 'trainlm');
+net.trainParam.epochs = 10000;
 net = configure(net, inputCA, targetCA);
 view(net);
 
@@ -40,5 +41,5 @@ output = normalizeImages(output);
 orginals = imgs(:,:,numToTrain+1:end);
 
 save([name 'PixResults.mat'], 'net', 'orginals', 'output', 'numAngles', 'numToTrain', 'numToCheck');
-SuccessSavedTo =  [name 'Results.mat'] % should echo
+SuccessSavedTo =  [name 'PixResults.mat'] % should echo
 displayResults([name 'Pix']);

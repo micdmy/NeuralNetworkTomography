@@ -1,16 +1,17 @@
 clear all;
+close all;
 clc;
 
-namePattern = 'Ellipse2x32y32n1000';
-numberOfImages = 1000;
+namePattern = 'Ellipse1x32y32n600';
+numberOfImages = 600;
 generatePgmFiles = false;
 
 
 %images data:
 imgSize = 32;
-ellipse2ImgRatioMax = 1/2;
-ellipse2ImgRatioMin = 1/4;
-nrOfEllipses = 2;
+ellipse2ImgRatioMax = 1/4;
+ellipse2ImgRatioMin = 1/8;
+nrOfEllipses = 1;
 
 %radon data:
 projectionNum = 8;
